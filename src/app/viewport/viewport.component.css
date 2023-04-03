@@ -1,0 +1,94 @@
+#viewport-container {
+    display: flex;
+    width: 85vw;
+    height: auto;
+    justify-content: space-evenly;
+}
+
+#viewport-container input {
+    width: 15vw;
+}
+
+input {
+    appearance: none;
+    height: 2px;
+    background: white;
+}
+
+#controls,
+#controls-run {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-content: center;
+    flex-wrap: wrap;
+    color: white;
+}
+
+#controls>div,
+#controls-run>div {
+    box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px, rgb(51, 51, 51) 0px 0px 0px 3px;
+    padding: 1em;
+}
+
+#howmany-minutes,
+#howmany-minutes-run {
+    font-weight: 700;
+    font-size: 3em;
+    text-align: center;
+}
+
+#viewport {
+    width: 60vw;
+    height: 80vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+#color {
+    width: 45em;
+    height: 45em;
+    box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px, rgb(51, 51, 51) 0px 0px 0px 3px;
+    align-self: center;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-content: center;
+}
+
+#color-refresh {
+    background-color: #111;
+    color: white;
+    font-weight: 700;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    width: 80%;
+    height: 10%;
+    margin-top: 10px;
+    align-self: center;
+    border-radius: 10px/10px;
+}
+
+#start-button {
+    background-color: #111;
+    color: white;
+    font-weight: 700;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    width: 20%;
+    height: 10%;
+    margin-top: 10px;
+    align-self: center;
+    border-radius: 10px/10px;
+}
+
+#minutes {
+    font-weight: 700;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    width: 20%;
+    height: 10%;
+    margin-top: 10px;
+    align-self: center;
+}

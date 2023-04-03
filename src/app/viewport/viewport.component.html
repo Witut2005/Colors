@@ -1,0 +1,25 @@
+<div id="viewport-container">
+    <div id="viewport">
+        <div [@colorChange]="state" (@colorChange.done)=animationEnd($event) id="color">
+            <div [@opacityChange]="quoteState">{{currentQuote}}</div>
+        </div>
+        <button (click)="buttonText == 'stop' ? stop() : start()" id="start-button">{{buttonText}}</button>
+    </div>
+
+    <div id="controls-run" style="display: none;">
+        <div>
+            <div id="howmany-minutes-run">{{(toInt(timeLeft / 60)) + ':' + toInt(timeLeft % 60)}}</div>
+            <input type="range" min="0" max="120" [value]="timeLeft" />
+        </div>
+    </div>
+
+    <div id="controls">
+        <div>
+            <div id="howmany-minutes">{{((minutes.toString().length
+                < 2) ? '0' : '') + minutes + ':00'}}</div>
+                    <input type="range" min="0" max="120" [(ngModel)]="minutes" />
+            </div>
+
+            <button id="color-refresh" (click)="colorRefresh()">New Color</button>
+        </div>
+    </div>

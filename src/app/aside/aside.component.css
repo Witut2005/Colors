@@ -1,0 +1,25 @@
+#sidebar-container {
+    height: 85vh;
+    box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px, rgb(51, 51, 51) 0px 0px 0px 3px;
+}
+
+#sidebar {
+    height: 40vh;
+    width: 10vw;
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+    justify-content: space-evenly;
+    text-align: center;
+    align-content: center;
+}
+
+#sidebar>div {
+    width: 80%;
+    color: white;
+}
+
+a {
+    text-decoration: none;
+    color: white;
+}
