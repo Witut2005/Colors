@@ -1,0 +1,31 @@
+input {
+    color-scheme: dark;
+}
+
+#login-container {
+    display: flex;
+    flex-direction: column;
+    width: 85vw;
+    height: 100%;
+    justify-content: center;
+    align-content: center;
+    flex-wrap: wrap;
+    color: white;
+}
+
+#login-container>div {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-content: center;
+}
+
+#login-container>div {
+    padding: 1em;
+    width: 20%;
+    height: auto;
+}
+
+#login-box {
+    box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px, rgb(51, 51, 51) 0px 0px 0px 3px;
+}
