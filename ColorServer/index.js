@@ -1,9 +1,12 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const models = require('./db_models');
+const cors = require('cors');
 
 const app = express();
+
 app.use(express.json())
+app.use(cors())
 
 const HTTPS_PORT = 2020;
 
@@ -16,21 +19,23 @@ app.get('/', async(req, res) => {
     console.log('o')
 })
 
-app.post('/users/', (req, res) => {
+app.post('/users', (req, res) => {
 
     const name = req.body.name;
     const password = req.body.password;
-    const colors = req.body.colors;
+
+    console.log(req.body)
+
+    console.log('user added: ' + name + ' ' + password)
 
     const data = new models.mongoModel({
         username: name,
         password: password,
-        colors: colors
     })
 
     data.save();
 
-    res.send('ok').status(200)
+    res.send({ "status": "ok" }).status(200)
 
 })
 
@@ -40,32 +45,47 @@ app.get('/users', async(req, res) => {
     const users = await models.mongoModel.find({})
     console.log(users)
 
-    res.send(users).status(200);
+    if (users == {}) {
+        res.send({ "status": "failure" }).status(404)
+    } else {
+
+        res.send({ "status": "ok" }).status(200)
+    }
 
 })
 
 app.get('/users/:name', async(req, res) => {
 
-    const name = req.params.name;
-    console.log('finding user', req.query.name)
+    const name = req.params.name
+    const password = req.query.password
+    console.log('finding user', name)
+    console.log('password given', password)
 
-    const user = await models.mongoModel.find({ username: name })
+    const user = await models.mongoModel.find({ username: name, password: password })
     console.log(user)
+    console.log(user.length)
 
-    res.send(user).status(200);
-
-})
-
-app.patch('/users/:name', async(req, res) => {
-
-    console.log('PATCHing...')
-    const name = req.params.name;
-
-    const data = await models.mongoModel.findOneAndUpdate({ username: name }, { colors: 'NaICHO' }, { new: true })
-
-    res.send(data).status(200)
+    if (user.length == 0) {
+        res.send({ "status": "failure" }).status(404);
+        return
+    } else {
+        res.send({ "status": "ok" }).status(200);
+        return
+    }
 
 })
+
+app.post('/users')
+
+// app.patch('/users/:name', async(req, res) => {
+// 
+//     const name = req.params.name;
+// 
+//     const data = await models.mongoModel.findOneAndUpdate({ username: name }, { colors: 'NaICHO' }, { new: true })
+// 
+//     res.send(data).status(200)
+// 
+// })
 
 app.listen(HTTPS_PORT, (req, res, err) => {
     if (err)

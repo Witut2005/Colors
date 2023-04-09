@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {transition, trigger, state, style, animate } from '@angular/animations';
+import { HttpService } from '../http.service';
 
 const linkHover = trigger('linkHover', [
 
@@ -42,7 +43,7 @@ export class AsideComponent implements OnInit {
     this.hoveredLink = event?.target.innerHTML;
   }
 
-  constructor() { }
+  constructor(public HttpService: HttpService) { }
 
   ngOnInit(): void {
   }

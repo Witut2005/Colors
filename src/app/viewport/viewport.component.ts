@@ -1,6 +1,7 @@
 import { Component, OnInit} from '@angular/core';
 import {transition, trigger, state, style, animate } from '@angular/animations';
 import { YourColorsArray } from '../colors';
+import { HttpService } from '../http.service';
 
 const randomColor = () =>  {return String('#' + Math.floor(Math.random()*16777215).toString(16))}
 
@@ -79,7 +80,7 @@ export class ViewportComponent implements OnInit {
   intervalId: any | null = null;
   animate: boolean = true;
 
-  constructor() {
+  constructor(public HttpService: HttpService) {
   }
 
   colorRefresh()
@@ -130,11 +131,7 @@ export class ViewportComponent implements OnInit {
           YourColorsArray.push(String(colors))
           alert('Hurray, you did it!')
         }
-
-        this.state = 'start';
-        this.animate = false;
-        this.buttonText = 'start';
-        return;
+        window.location.reload()
       }
 
       this.timeLeft--;

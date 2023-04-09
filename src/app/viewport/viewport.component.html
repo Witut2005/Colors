@@ -1,4 +1,4 @@
-<div id="viewport-container">
+<div *ngIf="HttpService.loginStatus()" id="viewport-container">
     <div id="viewport">
         <div [@colorChange]="state" (@colorChange.done)=animationEnd($event) id="color">
             <div [@opacityChange]="quoteState">{{currentQuote}}</div>

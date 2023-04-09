@@ -5,8 +5,8 @@ input {
 #login-container {
     display: flex;
     flex-direction: column;
-    width: 85vw;
-    height: 100%;
+    width: 100vw;
+    height: 80vh;
     justify-content: center;
     align-content: center;
     flex-wrap: wrap;

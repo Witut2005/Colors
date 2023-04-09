@@ -1,4 +1,4 @@
-<div id="sidebar-container">
+<div *ngIf="HttpService.loginStatus()" id="sidebar-container">
     <div id="sidebar">
         <div *ngFor="let x of sidebarOptions">
             <a (mouseenter)="hoverDetect($event)" (mouseleave)="noHover()" [routerLink]="x" [@linkHover]="hoveredLink == x ? 'hover' : 'normal'">{{x}}</a>
