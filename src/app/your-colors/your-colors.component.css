@@ -1,3 +1,27 @@
+#your-colors-container {
+    width: 85vw;
+    height: 85vh;
+}
+
+.color-box {
+    width: 10em;
+    height: 10em;
+    box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px, rgb(51, 51, 51) 0px 0px 0px 3px;
+    word-wrap: break-word;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    align-self: center;
+    justify-self: center;
+}
+
+#colors {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: repeat(100, 20vh);
+    grid-gap: 20px;
+}
+
 div {
     color: white;
 }

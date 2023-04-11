@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { Router } from '@angular/router';
 import Cookies from 'js-cookie';
 
 @Injectable({
@@ -21,22 +22,40 @@ export class HttpService {
     Cookies.set('login', 'true')
   }
 
-  singnedOut():void
+  logout():void
   {
     Cookies.set('login', 'false')
+    Cookies.set('username', '')
+    Cookies.set('password', '')
+    this.router.navigateByUrl('/')
   }
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient, private router: Router) {}
 
   getColors(username: string): Observable<any>
   {
-    return this.http.get('http://localhost:2020/users/' + username)
+    if(Cookies.get('login') == 'false')
+      this.router.navigateByUrl('/')
+    
+    return this.http.get('http://localhost:2020/users/colors/' + username)
+  }
+
+  postColor(color: string): Observable<any>
+  {
+    const body = {
+      "username": Cookies.get('username'),
+      "password": Cookies.get('password'),
+      "colors": color
+    }
+
+    return this.http.post('http://localhost:2020/users/colors/', body)
+
   }
 
   addUser(username: string, password: string)
   {
     const body = {
-      "name": username,
+      "username": username,
       "password": password
     }
 

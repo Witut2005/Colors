@@ -21,7 +21,7 @@ app.get('/', async(req, res) => {
 
 app.post('/users', (req, res) => {
 
-    const name = req.body.name;
+    const name = req.body.username;
     const password = req.body.password;
 
     console.log(req.body)
@@ -38,6 +38,7 @@ app.post('/users', (req, res) => {
     res.send({ "status": "ok" }).status(200)
 
 })
+
 
 app.get('/users', async(req, res) => {
 
@@ -62,8 +63,7 @@ app.get('/users/:name', async(req, res) => {
     console.log('password given', password)
 
     const user = await models.mongoModel.find({ username: name, password: password })
-    console.log(user)
-    console.log(user.length)
+
 
     if (user.length == 0) {
         res.send({ "status": "failure" }).status(404);
@@ -75,17 +75,80 @@ app.get('/users/:name', async(req, res) => {
 
 })
 
-app.post('/users')
+app.get('/users/colors/:name', async(req, res) => {
 
-// app.patch('/users/:name', async(req, res) => {
-// 
-//     const name = req.params.name;
-// 
-//     const data = await models.mongoModel.findOneAndUpdate({ username: name }, { colors: 'NaICHO' }, { new: true })
-// 
-//     res.send(data).status(200)
-// 
-// })
+    const name = req.params.name
+
+    const user = await models.mongoModel.findOne({ username: name })
+
+    const colors = user.colors == undefined ? '' : user.colors
+    console.log(user)
+    console.log('user colors:', colors)
+
+    if (user.length == 0) {
+        res.send({ "status": "failure" }).status(404);
+        return
+    } else {
+        res.send({ "status": "ok", "colors": colors }).status(200);
+        return
+    }
+
+})
+
+app.post('/users/colors', async(req, res) => {
+
+    const username = req.body.username
+    const password = req.body.password
+
+    console.log('color post')
+    console.log('body', req.body)
+
+    let user = await models.mongoModel.findOne({ username: username, password: password })
+
+    console.log(user)
+
+    let updatedColors = undefined
+
+    if (user.colors != undefined)
+        updatedColors = user.colors + '\n' + req.body.colors
+    else
+        updatedColors = req.body.colors
+
+    console.log(user.colors, updatedColors)
+    console.log(user)
+
+    user = await models.mongoModel.findOneAndUpdate({ username: username, password: password }, { colors: updatedColors })
+
+    if (user.length == 0) {
+        res.send({ "status": "failure" }).status(404);
+        return
+    } else {
+        res.send({ "status": "ok" }).status(200);
+        return
+    }
+
+})
+
+
+app.post('/users', (req, res) => {
+
+    const name = req.body.name;
+    const password = req.body.password;
+
+    console.log(req.body)
+
+    console.log('user added: ' + name + ' ' + password)
+
+    const data = new models.mongoModel({
+        username: name,
+        password: password,
+    })
+
+    data.save();
+
+    res.send({ "status": "ok" }).status(200)
+
+})
 
 app.listen(HTTPS_PORT, (req, res, err) => {
     if (err)

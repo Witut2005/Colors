@@ -1,2 +1,2 @@
 
-export const YourColorsArray:String[] = ['nicho'];
+export const YourColorsArray = new Set<String>(); 

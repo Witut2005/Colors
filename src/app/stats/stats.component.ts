@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpService } from '../http.service';
+import Cookies from 'js-cookie';
+import { Router} from '@angular/router';
 
 interface User
 {
@@ -14,9 +16,9 @@ interface User
 })
 export class StatsComponent implements OnInit {
 
-  constructor(private http: HttpService) { 
-    console.log('get colors!!!!!')
-    http.getColors('tomek').subscribe((data: any)=>{console.log(data)});
+  constructor(private http: HttpService, private router: Router) { 
+    if(Cookies.get('login') == 'false')
+      this.router.navigateByUrl('/')
   }
 
   ngOnInit(): void {

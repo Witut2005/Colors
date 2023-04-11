@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import Cookies from 'js-cookie';
 
 @Component({
   selector: 'app-settings',
@@ -7,7 +9,10 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SettingsComponent implements OnInit {
 
-  constructor() { }
+  constructor(private router: Router) { 
+    if(Cookies.get('login') == 'false')
+      this.router.navigateByUrl('/')
+  }
 
   ngOnInit(): void {
   }

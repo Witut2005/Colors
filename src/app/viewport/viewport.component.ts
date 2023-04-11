@@ -1,7 +1,9 @@
-import { Component, OnInit} from '@angular/core';
+import { Component, OnInit, AfterViewInit } from '@angular/core';
 import {transition, trigger, state, style, animate } from '@angular/animations';
 import { YourColorsArray } from '../colors';
 import { HttpService } from '../http.service';
+import Cookies from 'js-cookie';
+import { Router } from '@angular/router';
 
 const randomColor = () =>  {return String('#' + Math.floor(Math.random()*16777215).toString(16))}
 
@@ -52,8 +54,8 @@ const opacityChange = trigger('opacityChange', [
     opacity: '0.0'
   })),
 
-  transition('visible => invisible', [animate('1.5s ease')]),
-  transition('invisible => visible', [animate('1.5s ease')]),
+  transition('visible => invisible', [animate('2.5s ease')]),
+  transition('invisible => visible', [animate('2.5s ease')]),
 
 
 ])
@@ -65,7 +67,7 @@ const opacityChange = trigger('opacityChange', [
   styleUrls: ['./viewport.component.css'],
   animations: [colorChange, opacityChange]
 })
-export class ViewportComponent implements OnInit {
+export class ViewportComponent implements OnInit{
 
   state = 'start';
   quoteState = 'visible';
@@ -80,7 +82,14 @@ export class ViewportComponent implements OnInit {
   intervalId: any | null = null;
   animate: boolean = true;
 
-  constructor(public HttpService: HttpService) {
+  constructor(public HttpService: HttpService, private router: Router) {
+    if(Cookies.get('login') == 'false')
+      this.router.navigateByUrl('/')
+    for(let x in colors)
+    {
+      if(colors[x].length != 7)
+        window.location.reload()
+    }
   }
 
   colorRefresh()
@@ -128,8 +137,8 @@ export class ViewportComponent implements OnInit {
         else
         {
           console.log(document.getElementById('color')?.style)
-          YourColorsArray.push(String(colors))
           alert('Hurray, you did it!')
+          this.HttpService.postColor(String(colors)).subscribe((data)=>{console.log(data)})
         }
         window.location.reload()
       }
@@ -180,9 +189,11 @@ export class ViewportComponent implements OnInit {
       setTimeout(()=>{
         this.quoteState = 'visible'; 
         this.currentQuote = this.quotes[this.currentQuoteIndex++];}
-      , 3000)
+      , 5000)
 
-    }, 5000);
+    }, 10000);
+
   }
+
 
 }

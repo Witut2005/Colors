@@ -36,6 +36,8 @@ export class LoginComponent implements OnInit {
           console.log('login success')
           alert('succefully logged')
           Cookies.set('login', String(this.HttpService.loginStatus()))
+          Cookies.set('username', String(userInput.value))
+          Cookies.set('password', String(passwordInput.value))
           this.router.navigateByUrl('/Home')
         }
       })

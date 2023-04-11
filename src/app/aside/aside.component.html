@@ -3,5 +3,6 @@
         <div *ngFor="let x of sidebarOptions">
             <a (mouseenter)="hoverDetect($event)" (mouseleave)="noHover()" [routerLink]="x" [@linkHover]="hoveredLink == x ? 'hover' : 'normal'">{{x}}</a>
         </div>
+        <a (click)="HttpService.logout()" (mouseenter)="hoverDetect($event)" (mouseleave)="noHover()" [@linkHover]="hoveredLink == 'LogOut' ? 'hover' : 'normal'">LogOut</a>
     </div>
 </div>

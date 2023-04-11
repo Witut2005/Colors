@@ -1,5 +1,5 @@
-<div>
-    <div *ngFor="let x of getColorsArray()">
-        <p>{{x}}</p>
+<div id="your-colors-container">
+    <div id="colors">
+        <div *ngFor="let x of getColorsArray()" class="color-box" [ngStyle]="{background: getGradient(x)}">{{getQuote()}}</div>
     </div>
 </div>
