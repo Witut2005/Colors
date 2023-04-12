@@ -48,6 +48,10 @@ export class LoginComponent implements OnInit {
       console.log('try to create new user')
       this.HttpService.addUser(userInput.value, passwordInput.value).subscribe((response) => {
         console.log(response)
+        if(response.error)
+        {
+          alert(response.error)
+        }
       })
     }
   }

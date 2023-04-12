@@ -6,6 +6,7 @@ import { YourColorsComponent } from './your-colors/your-colors.component';
 import { SettingsComponent } from './settings/settings.component';
 import { AboutComponent } from './about/about.component';
 import { LoginComponent } from './login/login.component';
+import { TagComponent } from './tag/tag.component';
 
 export const routes: Routes = [
   {path: '', redirectTo: 'Login', pathMatch: 'full'},
@@ -14,7 +15,8 @@ export const routes: Routes = [
   {path: 'Your Colors', component: YourColorsComponent},
   {path: 'Settings', component: SettingsComponent},
   {path: 'About', component: AboutComponent},
-  {path: 'Login', component: LoginComponent}
+  {path: 'Login', component: LoginComponent},
+  {path: 'Tags', component: TagComponent},
 ];
 
 @NgModule({

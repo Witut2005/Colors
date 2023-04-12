@@ -30,7 +30,7 @@ export class AsideComponent implements OnInit {
   linkState = 'normal'
   hoveredLink: String = '';
 
-  sidebarOptions = ['Home', 'Stats', 'Your Colors', 'Settings', 'About']
+  sidebarOptions = ['Home', 'Stats', 'Your Colors', 'Settings', 'About', 'Tags']
 
   noHover()
   {

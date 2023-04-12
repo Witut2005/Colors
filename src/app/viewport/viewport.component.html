@@ -1,9 +1,9 @@
 <div *ngIf="HttpService.loginStatus()" id="viewport-container">
     <div id="viewport">
-        <div [@colorChange]="state" (@colorChange.done)=animationEnd($event) id="color">
-            <div [@opacityChange]="quoteState">{{currentQuote}}</div>
+        <div [@colorChange]="state" (@colorChange.done)=animationHandle($event) id="color">
+            <div id="quote" [@opacityChange]="quoteState">{{currentQuote.quote}}</div>
         </div>
-        <button (click)="buttonText == 'stop' ? stop() : start()" id="start-button">{{buttonText}}</button>
+        <button (click)="buttonText == 'stop' ? stop() : start(tag.value)" id="start-button">{{buttonText}}</button>
     </div>
 
     <div id="controls-run" style="display: none;">
@@ -17,9 +17,13 @@
         <div>
             <div id="howmany-minutes">{{((minutes.toString().length
                 < 2) ? '0' : '') + minutes + ':00'}}</div>
-                    <input type="range" min="0" max="120" [(ngModel)]="minutes" />
+                    <input type="range" min="10" max="120" [(ngModel)]="minutes" />
             </div>
 
-            <button id="color-refresh" (click)="colorRefresh()">New Color</button>
+            <select #tag>
+                <option *ngFor="let x of getTags()">{{x}}</option>
+            </select>
+
+            <button id="color-refresh" (click)="refresh()">New Color</button>
         </div>
     </div>

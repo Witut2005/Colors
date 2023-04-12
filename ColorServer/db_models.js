@@ -1,10 +1,16 @@
 const mongoose = require('mongoose');
 
+
+
 const schema = {
-    id: Number,
     username: String,
     password: String,
-    colors: String
+    jobs: {
+        date: String,
+        colors: String,
+        duration: String,
+        tag: String
+    }
 }
 
 const mongoModel = mongoose.model('colorDb', schema)

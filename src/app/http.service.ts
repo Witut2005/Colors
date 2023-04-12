@@ -4,9 +4,11 @@ import { Observable } from 'rxjs';
 import { Router } from '@angular/router';
 import Cookies from 'js-cookie';
 
+
 @Injectable({
   providedIn: 'root'
 })
+
 
 export class HttpService {
 
@@ -34,18 +36,20 @@ export class HttpService {
 
   getColors(username: string): Observable<any>
   {
-    if(Cookies.get('login') == 'false')
-      this.router.navigateByUrl('/')
-    
     return this.http.get('http://localhost:2020/users/colors/' + username)
   }
 
-  postColor(color: string): Observable<any>
+  postColor(color: string, duration: string, startDate: Date, tag: string): Observable<any>
   {
     const body = {
       "username": Cookies.get('username'),
       "password": Cookies.get('password'),
-      "colors": color
+      "job": {
+        "color": color,
+        "duration": duration,
+        "date": startDate.toLocaleString(),
+        "tag": tag
+      }
     }
 
     return this.http.post('http://localhost:2020/users/colors/', body)

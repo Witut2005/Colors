@@ -19,26 +19,6 @@ app.get('/', async(req, res) => {
     console.log('o')
 })
 
-app.post('/users', (req, res) => {
-
-    const name = req.body.username;
-    const password = req.body.password;
-
-    console.log(req.body)
-
-    console.log('user added: ' + name + ' ' + password)
-
-    const data = new models.mongoModel({
-        username: name,
-        password: password,
-    })
-
-    data.save();
-
-    res.send({ "status": "ok" }).status(200)
-
-})
-
 
 app.get('/users', async(req, res) => {
 
@@ -89,7 +69,7 @@ app.get('/users/colors/:name', async(req, res) => {
         res.send({ "status": "failure" }).status(404);
         return
     } else {
-        res.send({ "status": "ok", "colors": colors }).status(200);
+        res.send({ "status": "ok", "data": user.jobs }).status(200);
         return
     }
 
@@ -97,27 +77,19 @@ app.get('/users/colors/:name', async(req, res) => {
 
 app.post('/users/colors', async(req, res) => {
 
-    const username = req.body.username
-    const password = req.body.password
-
-    console.log('color post')
     console.log('body', req.body)
 
-    let user = await models.mongoModel.findOne({ username: username, password: password })
+    const username = req.body.username
+    const password = req.body.password
+    const color = req.body.job.color
+    const duration = req.body.job.duration
+    const date = req.body.job.date
+    const tag = req.body.job.tag
 
-    console.log(user)
+    console.log('color post')
 
-    let updatedColors = undefined
-
-    if (user.colors != undefined)
-        updatedColors = user.colors + '\n' + req.body.colors
-    else
-        updatedColors = req.body.colors
-
-    console.log(user.colors, updatedColors)
-    console.log(user)
-
-    user = await models.mongoModel.findOneAndUpdate({ username: username, password: password }, { colors: updatedColors })
+    user = await models.mongoModel.findOne({ username: username, password: password })
+    user = await models.mongoModel.findOneAndUpdate({ username: username, password: password }, { date: new Date(), jobs: { colors: user.jobs.colors + color + '\n', duration: user.jobs.duration + duration + '\n', date: user.jobs.date + date + '\n', tag: user.jobs.tag + tag + '\n' } })
 
     if (user.length == 0) {
         res.send({ "status": "failure" }).status(404);
@@ -132,16 +104,26 @@ app.post('/users/colors', async(req, res) => {
 
 app.post('/users', (req, res) => {
 
-    const name = req.body.name;
+    const username = req.body.username;
     const password = req.body.password;
 
     console.log(req.body)
 
-    console.log('user added: ' + name + ' ' + password)
+    // console.log(findOne({ username: req.body.name }))
+
+    if (models.mongoModel.findOne({ username: req.body.username }) != null) {
+        res.send({ "status": "failure", "error": "account with this name already exists!" }).status(403)
+    }
 
     const data = new models.mongoModel({
-        username: name,
+        username: username,
         password: password,
+        jobs: {
+            colors: '',
+            date: '',
+            duration: '',
+            tag: ''
+        }
     })
 
     data.save();

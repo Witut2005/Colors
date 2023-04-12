@@ -14,6 +14,7 @@ import { AboutComponent } from './about/about.component';
 import { YourColorsComponent } from './your-colors/your-colors.component';
 import {HttpClientModule} from '@angular/common/http';
 import { LoginComponent } from './login/login.component';
+import { TagComponent } from './tag/tag.component';
 
 @NgModule({
   declarations: [
@@ -25,7 +26,8 @@ import { LoginComponent } from './login/login.component';
     SettingsComponent,
     AboutComponent,
     YourColorsComponent,
-    LoginComponent
+    LoginComponent,
+    TagComponent
   ],
   imports: [
     BrowserModule,
