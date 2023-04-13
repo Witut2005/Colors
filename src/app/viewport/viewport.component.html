@@ -1,6 +1,6 @@
 <div *ngIf="HttpService.loginStatus()" id="viewport-container">
 
-    <div id="tag-select-box" [ngClass]="'tag-select-' + tagSelectBoxState()" [@tagSelectBoxAnimation]="tagSelectBoxState()">
+    <div id="tag-select-box" [ngClass]="'tag-select-' + tagSelectBoxState()" [@tagSelectBoxAnimation]="tagSelectBoxState()" #tagBox>
         <p *ngFor="let x of getTags()" id="tag-select" (click)="tagChoosed(x)">{{x}}</p>
     </div>
 

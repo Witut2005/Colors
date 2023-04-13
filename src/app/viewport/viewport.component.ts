@@ -160,6 +160,11 @@ export class ViewportComponent implements OnInit{
   selectedTag: string | null = null;
   tagBoxState: string = 'off';
 
+  // tagBoxOverflox(tagBox: any):string
+  // {
+  //   if(tagBox.d)
+  // }
+
   tagSelectBoxState():string
   {
     return this.tagBoxState
