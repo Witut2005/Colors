@@ -1,3 +1,39 @@
+#tag-select-box {
+    display: flex;
+    flex-direction: column;
+    height: auto;
+    max-height: 30vh;
+    width: auto;
+    overflow: auto;
+    padding: 10px;
+    box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px, rgb(51, 51, 51) 0px 0px 0px 3px;
+    background-color: white;
+}
+
+#tag-select-box>p {
+    width: 100%;
+    cursor: pointer;
+}
+
+#tag-select {
+    margin-top: 10px;
+    text-align: center;
+}
+
+#tag-select:hover {
+    cursor: pointer;
+}
+
+.tag-select-off {
+    position: fixed;
+    left: 50%;
+}
+
+.tag-select-on {
+    position: fixed;
+    left: 50%;
+}
+
 #quote {
     /* color: white; */
     font-weight: bold;

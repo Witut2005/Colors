@@ -61,6 +61,22 @@ const opacityChange = trigger('opacityChange', [
 
 ])
 
+const tagSelectBoxAnimation = trigger('tagSelectBoxAnimation', [
+  state('off', 
+  style({
+    top: '-100%'
+  })),
+
+  state('on', 
+  style({
+    top: '40%'
+  })),
+
+  transition('on => off', [animate('0.5s ease')]),
+  transition('off => on', [animate('0.5s ease')]),
+
+])
+
 type Quote = {
   quote: string
   author: string
@@ -70,10 +86,12 @@ type Quote = {
   selector: 'app-viewport',
   templateUrl: './viewport.component.html',
   styleUrls: ['./viewport.component.css'],
-  animations: [colorChange, opacityChange]
+  animations: [colorChange, opacityChange, tagSelectBoxAnimation]
 })
 export class ViewportComponent implements OnInit{
 
+  
+  tagSelected = 'Work';
   state = 'start';
   quoteState = 'visible';
 
@@ -140,6 +158,28 @@ export class ViewportComponent implements OnInit{
   intervalId: null | any = null;
   animateGradient: boolean = true;
   selectedTag: string | null = null;
+  tagBoxState: string = 'off';
+
+  tagSelectBoxState():string
+  {
+    return this.tagBoxState
+    // if(this.tagBoxState == 'on')
+    //   return 'tag-select-on'
+    // else
+    //   return 'tag-select-off'
+  }
+
+  tagSelect()
+  {
+    this.tagBoxState = 'on'
+  }
+
+
+  tagChoosed(tagName: string)
+  {
+    this.tagSelected = tagName
+    this.tagBoxState = 'off'
+  }
 
   refresh()
   {
