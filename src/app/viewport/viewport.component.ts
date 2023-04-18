@@ -1,6 +1,6 @@
 import { Component, OnInit, AfterViewInit } from '@angular/core';
 import {transition, trigger, state, style, animate } from '@angular/animations';
-import { YourColorsArray } from '../colors';
+import { currentUserInfo} from '../colors';
 import { HttpService } from '../http.service';
 import Cookies from 'js-cookie';
 import { Router } from '@angular/router';
@@ -152,7 +152,7 @@ export class ViewportComponent implements OnInit{
   startDate: Date | null = null;
   currentDate: Date | null = null;
   timeLeft: number = 0; // time left to succed in task
-  minutes: number = 10; // minutes given
+  minutes: number = 0; // minutes given
   buttonText = 'start'; 
   currentQuoteIndex = 0;
   intervalId: null | any = null;

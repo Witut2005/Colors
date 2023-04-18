@@ -1,5 +1,8 @@
 <div id="your-colors-container">
     <div id="colors">
-        <div *ngFor="let x of getColorsArray()" class="color-box" [ngStyle]="{background: getGradient(x)}">{{getQuote()}}</div>
+        <div *ngFor="let x of getUserInfo()" class="color-box" [ngStyle]="{background: getGradient(x.color)}">
+            <p>{{x.date}}</p>
+            <p>{{x.tag}}</p>
+        </div>
     </div>
 </div>
