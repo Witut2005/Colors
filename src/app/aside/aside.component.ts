@@ -31,7 +31,7 @@ export class AsideComponent implements OnInit {
   hoveredLink: String = '';
 
   // sidebarOptions = ['Home', 'Stats', 'Your Colors', 'Settings', 'About', 'Tags']
-  sidebarOptions = ['Home', 'Your Colors', 'About', ]
+  sidebarOptions = ['Home', 'Your Colors', 'Stats', 'About']
 
   noHover()
   {

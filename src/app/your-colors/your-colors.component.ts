@@ -17,7 +17,7 @@ export class YourColorsComponent implements OnInit {
 
   getUserInfo()
   {
-    return currentUserInfo
+    return currentUserInfo?.reverse()
   }
   
   getGradient(x: any)

@@ -1,1 +1,15 @@
-<p>stats works!</p>
+<div id="stats-container">
+    <div id="stats">
+
+        <div id="chart">
+            <div *ngFor="let x of days">
+                {{x}}
+            </div>
+        </div>
+
+        <div id="options">
+            <input #date type="month" [value]="'2023-01'" (change)="monthChange(date.value)" />
+        </div>
+
+    </div>
+</div>
