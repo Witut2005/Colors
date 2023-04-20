@@ -247,7 +247,8 @@ export class ViewportComponent implements OnInit{
         {
           console.log(document.getElementById('color')?.style)
           alert('Hurray, you did it!')
-          this.HttpService.postColor(String(colors), String(this.minutes), <Date>this.startDate, <string>this.selectedTag).subscribe((data)=>{console.log(data)})
+          // this.HttpService.postColor(String(colors), String(this.minutes), <Date>this.startDate, <string>this.selectedTag).subscribe((data)=>{console.log(data)})
+          this.HttpService.postColor(String(colors), String(10), <Date>this.startDate, <string>this.selectedTag).subscribe((data)=>{console.log(data)})
         }
         this.refresh()
       }

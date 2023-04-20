@@ -2,13 +2,21 @@
     <div id="stats">
 
         <div id="chart">
-            <div *ngFor="let x of days">
-                {{x}}
+            <div *ngFor="let x of daysIds" class="day-progress">
+
+                <div class="bar-space">
+                    <div class="bar" (mouseenter)="barHover(text)" (mouseleave)="barNoHover(text)" [ngStyle]="{'height': dayProgressBarHeightGet(x), 'top': dayPrograssBarPositionGet(x)}"></div>
+                </div>
+
+                <div class="minutes">
+                    <p #text>{{days[x]}}</p>
+                </div>
+
             </div>
         </div>
 
         <div id="options">
-            <input #date type="month" [value]="'2023-01'" (change)="monthChange(date.value)" />
+            <input #date type="month" [(ngModel)]="selectedDate" (change)="monthChange(date.value) " />
         </div>
 
     </div>
