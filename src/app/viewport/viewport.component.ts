@@ -152,7 +152,7 @@ export class ViewportComponent implements OnInit{
   startDate: Date | null = null;
   currentDate: Date | null = null;
   timeLeft: number = 0; // time left to succed in task
-  minutes: number = 0; // minutes given
+  minutes: number = 10; // minutes given
   buttonText = 'start'; 
   currentQuoteIndex = 0;
   intervalId: null | any = null;
@@ -192,7 +192,7 @@ export class ViewportComponent implements OnInit{
   }
 
   constructor(public HttpService: HttpService, private router: Router) {
-    if(Cookies.get('login') == 'false')
+    if (Cookies.get('login') == 'false' || Cookies.get('login') == undefined)
       this.router.navigateByUrl('/')
     for(let x in colors)
     {
@@ -247,8 +247,8 @@ export class ViewportComponent implements OnInit{
         {
           console.log(document.getElementById('color')?.style)
           alert('Hurray, you did it!')
-          // this.HttpService.postColor(String(colors), String(this.minutes), <Date>this.startDate, <string>this.selectedTag).subscribe((data)=>{console.log(data)})
-          this.HttpService.postColor(String(colors), String(10), <Date>this.startDate, <string>this.selectedTag).subscribe((data)=>{console.log(data)})
+          this.HttpService.postColor(String(colors), String(this.minutes), <Date>this.startDate, <string>this.selectedTag).subscribe((data)=>{console.log(data)})
+          // this.HttpService.postColor(String(colors), String(10), <Date>this.startDate, <string>this.selectedTag).subscribe((data)=>{console.log(data)})
         }
         this.refresh()
       }

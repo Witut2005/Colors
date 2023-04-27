@@ -10,7 +10,7 @@ import Cookies from 'js-cookie';
 export class SettingsComponent implements OnInit {
 
   constructor(private router: Router) { 
-    if(Cookies.get('login') == 'false')
+    if (Cookies.get('login') == 'false' || Cookies.get('login') == undefined)
       this.router.navigateByUrl('/')
   }
 

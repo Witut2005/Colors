@@ -15,6 +15,7 @@ import { YourColorsComponent } from './your-colors/your-colors.component';
 import {HttpClientModule} from '@angular/common/http';
 import { LoginComponent } from './login/login.component';
 import { TagComponent } from './tag/tag.component';
+import { BigLetterDirective } from './big-letter.directive';
 
 @NgModule({
   declarations: [
@@ -27,7 +28,8 @@ import { TagComponent } from './tag/tag.component';
     AboutComponent,
     YourColorsComponent,
     LoginComponent,
-    TagComponent
+    TagComponent,
+    BigLetterDirective
   ],
   imports: [
     BrowserModule,

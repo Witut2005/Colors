@@ -32,7 +32,7 @@ export class YourColorsComponent implements OnInit {
 
   constructor(private http: HttpService, private router: Router) {
     
-    if(Cookies.get('login') == 'false')
+    if (Cookies.get('login') == 'false' || Cookies.get('login') == undefined)
       this.router.navigateByUrl('/')
       http.getColors(<string>Cookies.get('username')).subscribe((response: any)=>{
 

@@ -1,7 +1,11 @@
 <div id="your-colors-container">
     <div id="colors">
         <div *ngFor="let x of getUserInfo()" class="color-box" [ngStyle]="{background: getGradient(x.color)}">
-            <p>{{x.date}}</p>
+            <div>
+                <p>
+                    {{x.date | date: 'dd MMM yyyy'}} {{x.date | date: 'HH:mm'}}
+                </p>
+            </div>
             <p>{{x.tag}}</p>
         </div>
     </div>
